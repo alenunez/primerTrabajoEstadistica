@@ -1,9 +1,9 @@
-
+library(ggplot2)
 datos <- read.csv('DataSetByGender_Aggregates_Excel_AggregateDS.csv')
 
 
 Migration_stock <- data.frame(Origen = datos$Origin,
-                              A�o = datos$YEAR,
+                              Año = datos$YEAR,
                               Total_migration_stock = datos$MS_ALL_TOT,
                               Males_All_education_groups = datos$MS_MAL_TOT,
                               Males_Low_skilled = datos$MS_MAL_LOW,
@@ -16,7 +16,7 @@ Migration_stock <- data.frame(Origen = datos$Origin,
                               )
 
 Migration_rate <- data.frame(Origen = datos$Origin,
-                              A�o = datos$YEAR,
+                              Año = datos$YEAR,
                               Total_migration_rate = datos$MR_ALL_TOT,
                               Males_All_education_groups = datos$MR_MAL_TOT,
                               Males_Low_skilled = datos$MR_MAL_LOW,
@@ -29,7 +29,7 @@ Migration_rate <- data.frame(Origen = datos$Origin,
 )
 
 Migration_native_labor <- data.frame(Origen = datos$Origin,
-                             A�o = datos$YEAR,
+                             Año = datos$YEAR,
                              Total_native_labor_force = datos$NS_ALL_TOT,
                              Males_All_education_groups = datos$NS_MAL_TOT,
                              Males_Low_skilled = datos$NS_MAL_LOW,
@@ -42,10 +42,20 @@ Migration_native_labor <- data.frame(Origen = datos$Origin,
 )
 
 totales <- data.frame(Origen = datos$Origin,
-                       A�o = datos$YEAR,
+                       Año = datos$YEAR,
                        Total_migration_stock = datos$MS_ALL_TOT, 
                        Total_migration_rate=datos$MR_ALL_TOT,
                        Total_native_labor_force=datos$NS_ALL_TOT)
+########CHATGPT por corregir
 
-summary(Migration_rate)
-class(recorte1$Total_migration_stock)
+# Lee los datos desde el archivo CSV
+data <- read.csv("migration_data.csv")
+
+# Crea la gráfica de barras comparando el número de mujeres en MR
+ggplot(data, aes(x = YEAR, y = MR_FEM_TOT)) +
+  geom_bar(stat = "identity", position = "dodge", fill = "blue") +
+  labs(title = "Comparación del número de mujeres en Migration Rate (MR)",
+       x = "Año",
+       y = "Número de mujeres en MR") +
+  theme_minimal()
+
